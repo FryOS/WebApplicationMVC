@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace WebApplicationMVC.Models
@@ -15,8 +16,22 @@ namespace WebApplicationMVC.Models
             _context = context;
         }
 
+        /*public async Task AddUser(User user)
+        {
+            // Добавление пользователя
+            var entry = _context.Entry(user);
+            if (entry.State == EntityState.Detached)
+                await _context.Users.AddAsync(user);
+
+            // Сохранение изенений
+            await _context.SaveChangesAsync();
+        }*/
+
         public async Task AddUser(User user)
         {
+            user.JoinDate = DateTime.Now;
+            user.Id = Guid.NewGuid();
+
             // Добавление пользователя
             var entry = _context.Entry(user);
             if (entry.State == EntityState.Detached)
@@ -26,7 +41,6 @@ namespace WebApplicationMVC.Models
             await _context.SaveChangesAsync();
         }
 
-        
 
         public async Task<User[]> GetUsers()
         {
