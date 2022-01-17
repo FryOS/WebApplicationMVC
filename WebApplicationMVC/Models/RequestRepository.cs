@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace WebApplicationMVC.Models
 {
-    public class BlogRepository : IBlogRepository
+    public class RequestRepository : IRequestRepository
     {
         // ссылка на контекст
-        private readonly BlogContext _context;
+        private readonly RequestContext _context;
 
         // Метод-конструктор для инициализации
-        public BlogRepository(BlogContext context)
+        public RequestRepository(RequestContext context)
         {
             _context = context;
         }
@@ -27,25 +27,24 @@ namespace WebApplicationMVC.Models
             await _context.SaveChangesAsync();
         }*/
 
-        public async Task AddUser(User user)
+        public async Task AddRequest(MyRequest request)
         {
-            user.JoinDate = DateTime.Now;
-            user.Id = Guid.NewGuid();            
+            
+            request.Id = Guid.NewGuid();
+            request.Date = DateTime.Now;
+            request.Url = "url";
+            
 
-            // Добавление пользователя
-            var entry = _context.Entry(user);
+            // Добавление запроса
+            var entry = _context.Entry(request);
             if (entry.State == EntityState.Detached)
-                await _context.Users.AddAsync(user);
+                await _context.MyRequest.AddAsync(request);
 
             // Сохранение изенений
             await _context.SaveChangesAsync();
         }
 
 
-        public async Task<User[]> GetUsers()
-        {
-            // Получим всех активных пользователей
-            return await _context.Users.ToArrayAsync();
-        }
+        
     }
 }

@@ -13,7 +13,7 @@ namespace WebApplicationMVC.Models
         // Логика взаимодействия с таблицами в БД
         public BlogContext(DbContextOptions<BlogContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.EnsureCreated(); 
         }
     }
 }

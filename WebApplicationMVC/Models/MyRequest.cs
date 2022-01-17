@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplicationMVC.Models
 {
-    [Table("Requests")]
-    public class Request
+    //[Table("MyRequest")]
+    public class MyRequest
     {
         public Guid Id { get; set; }
         public DateTime Date { get; set; }

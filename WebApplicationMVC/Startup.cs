@@ -28,7 +28,9 @@ namespace WebApplicationMVC
             services.AddControllersWithViews();
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<RequestContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
             services.AddTransient<IBlogRepository, BlogRepository>();
+            services.AddTransient<IRequestRepository, RequestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
