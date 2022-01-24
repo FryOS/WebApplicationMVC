@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplicationMVC.Models
 {
-    //[Table("MyRequest")]
+    [Table("MyRequest")]
     public class MyRequest
     {
         public Guid Id { get; set; }

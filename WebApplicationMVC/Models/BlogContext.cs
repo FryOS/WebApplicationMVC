@@ -7,6 +7,8 @@ namespace WebApplicationMVC.Models
         /// Ссылка на таблицу Users
         public DbSet<User> Users { get; set; }
 
+        public DbSet<MyRequest> MyRequests { get; set; }
+
         /// Ссылка на таблицу UserPosts
         public DbSet<UserPosts> UserPosts { get; set; }
 
